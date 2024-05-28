@@ -3,6 +3,8 @@
 
 #define MAX_NAME_LENGTH 50
 #define MAX_SKILLS 4
+#define MAX_QUESTIONS 5
+#define MAX_OPTIONS 4
 
 typedef struct {
     char name[MAX_NAME_LENGTH];
@@ -12,6 +14,12 @@ typedef struct {
     int atkModifier;
     int defModifier;
 } Skill;
+
+typedef struct {
+    char text[200];
+    char options[MAX_OPTIONS][200];
+    int impacts[MAX_OPTIONS]; // positive or negative impact on player's HP
+} Question;
 
 typedef struct {
     char name[MAX_NAME_LENGTH];
@@ -24,11 +32,12 @@ typedef struct {
 typedef struct {
     char name[MAX_NAME_LENGTH];
     char description[200];
-    int enemyCount;
-    Character enemies[3];
+    Question questions[MAX_QUESTIONS];
+    int questionCount;
+    Character interviewer;
 } Scenario;
 
 void initializeGame(Character *player, Scenario scenarios[]);
-int playScenario(Character *player, Scenario *scenario);
+int playScenario(Character *player, Scenario *scenario, int scenarioIndex);
 
 #endif

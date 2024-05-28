@@ -1,6 +1,7 @@
 #include "combat.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void combat(Character *player, Character *enemy) {
     while (player->hp > 0 && enemy->hp > 0) {
