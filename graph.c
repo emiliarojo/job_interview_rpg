@@ -1,23 +1,32 @@
 #include "graph.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-void initializeGraph(Graph *g) {
+void initializeGraph(Graph* graph) {
     for (int i = 0; i < MAX_SCENARIOS; i++) {
-        for (int j = 0; j < MAX_SCENARIOS; j++) {
-            g->adjMatrix[i][j] = 0;
-        }
+        graph->head[i] = NULL;
     }
 }
 
-void addEdge(Graph *g, int src, int dest) {
-    g->adjMatrix[src][dest] = 1;
-    g->adjMatrix[dest][src] = 1;
+void addEdge(Graph* graph, int src, int dest) {
+    GraphNode* newNode = (GraphNode*)malloc(sizeof(GraphNode));
+    newNode->scenarioIndex = dest;
+    newNode->next = graph->head[src];
+    graph->head[src] = newNode;
+
+    newNode = (GraphNode*)malloc(sizeof(GraphNode));
+    newNode->scenarioIndex = src;
+    newNode->next = graph->head[dest];
+    graph->head[dest] = newNode;
 }
 
-void printGraph(Graph *g) {
+void printGraph(Graph* graph) {
     for (int i = 0; i < MAX_SCENARIOS; i++) {
-        for (int j = 0; j < MAX_SCENARIOS; j++) {
-            printf("%d ", g->adjMatrix[i][j]);
+        GraphNode* temp = graph->head[i];
+        printf("\n Scenario %d\n: ", i);
+        while (temp) {
+            printf("%d -> ", temp->scenarioIndex);
+            temp = temp->next;
         }
         printf("\n");
     }

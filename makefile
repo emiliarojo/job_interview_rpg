@@ -1,32 +1,15 @@
-# Define the compiler
 CC = gcc
-
-# Define the compiler flags
 CFLAGS = -Wall -g
+DEPS = game.h combat.h load_config.h
+OBJ = main.o game.o combat.o load_config.o
 
-# Define the target executable
-TARGET = JobInterviewRPG
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
 
-# Define the source files
-SRCS = main.c game.c combat.c graph.c save_load.c
+JobInterviewRPG: $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS) -ljson-c
 
-# Define the object files
-OBJS = $(SRCS:.c=.o)
+.PHONY: clean
 
-# Default target
-all: $(TARGET)
-
-# Link the object files to create the executable
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
-
-# Compile each source file to an object file
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Clean up build artifacts
 clean:
-	rm -f $(OBJS) $(TARGET)
-
-# Phony targets
-.PHONY: all clean
+	rm -f *.o JobInterviewRPG

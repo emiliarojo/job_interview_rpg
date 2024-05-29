@@ -3,6 +3,6 @@
 
 #include "game.h"
 
-void combat(Character *player, Character *enemy);
+void timeStrike(Character *player, Character *enemy, char *lastMove);
 
 #endif

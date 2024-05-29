@@ -1,5 +1,5 @@
 #include "save_load.h"
-#include "game.h" // Include this header to recognize the Character type
+#include "game.h"
 #include <stdio.h>
 
 void saveGameState(Character *player, int currentScenario) {

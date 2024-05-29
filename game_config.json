@@ -1,0 +1,364 @@
+{
+  "character": {
+    "name": "Emilia",
+    "hp": 100,
+    "atk": 20,
+    "def": 10
+  },
+  "skills": [
+    {"name": "Problem Solving", "description": "Solve complex problems", "type": 1, "atkModifier": 10, "defModifier": 0},
+    {"name": "Coding", "description": "Write efficient code", "type": 1, "atkModifier": 15, "defModifier": 0},
+    {"name": "System Design", "description": "Design scalable systems", "type": 1, "atkModifier": 20, "defModifier": 0},
+    {"name": "Soft Skills", "description": "Excellent communication and teamwork", "type": 0, "atkModifier": 0, "defModifier": 10},
+    {"name": "Debugging", "description": "Find and fix bugs quickly", "type": 1, "atkModifier": 15, "defModifier": 0},
+    {"name": "Leadership", "description": "Lead and motivate teams effectively", "type": 0, "atkModifier": 0, "defModifier": 15},
+    {"name": "Time Management", "description": "Manage time and meet deadlines", "type": 0, "atkModifier": 0, "defModifier": 20},
+    {"name": "Research", "description": "Conduct thorough and efficient research", "type": 1, "atkModifier": 10, "defModifier": 5},
+    {"name": "Innovation", "description": "Come up with innovative solutions", "type": 1, "atkModifier": 25, "defModifier": 0},
+    {"name": "Adaptability", "description": "Adapt to new situations quickly", "type": 0, "atkModifier": 0, "defModifier": 20}
+  ],
+  "scenarios": [
+    {
+      "name": "HR Screening",
+      "description": "You are at the HR stage",
+      "interviewer": {"name": "HR", "hp": 30, "atk": 10, "def": 5},
+      "questions": [
+        {
+          "text": "Tell me about yourself.",
+          "option1": "I am a perfectionist",
+          "option2": "I work too hard",
+          "option3": "I can be disorganized",
+          "option4": "I have trouble delegating",
+          "hp1": -10, "hp2": -10, "hp3": 5, "hp4": -5,
+          "atk1": 0, "atk2": 0, "atk3": 0, "atk4": 0,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "What is your expected salary?",
+          "option1": "$100,000 per year",
+          "option2": "What's your budget?",
+          "option3": "I am flexible",
+          "option4": "Market rate",
+          "hp1": -10, "hp2": 0, "hp3": 5, "hp4": 10,
+          "atk1": -10, "atk2": 10, "atk3": 0, "atk4": 0,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "Why do you want to work here?",
+          "option1": "I love the company's culture",
+          "option2": "The job description fits my skills",
+          "option3": "I need a job",
+          "option4": "For career growth",
+          "hp1": 5, "hp2": 10, "hp3": -5, "hp4": -10,
+          "atk1": 5, "atk2": 10, "atk3": 0, "atk4": -5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "What are your strengths and weaknesses?",
+          "option1": "I am a perfectionist",
+          "option2": "I work too hard",
+          "option3": "I can be disorganized",
+          "option4": "I have trouble delegating",
+          "hp1": -10, "hp2": -10, "hp3": 5, "hp4": -5,
+          "atk1": 0, "atk2": 0, "atk3": 0, "atk4": 0,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "Where do you see yourself in 5 years?",
+          "option1": "In this company",
+          "option2": "In a management position",
+          "option3": "Running my own startup",
+          "option4": "As a technical expert",
+          "hp1": 5, "hp2": 10, "hp3": 5, "hp4": -10,
+          "atk1": 5, "atk2": 10, "atk3": 5, "atk4": -5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        }
+      ]
+    },
+    {
+      "name": "Coding Assessment",
+      "description": "You are at the Technical Lead stage",
+      "interviewer": {"name": "Technical Lead", "hp": 30, "atk": 10, "def": 5},
+      "questions": [
+        {
+          "text": "Solve this algorithm problem.",
+          "option1": "Use a brute force approach",
+          "option2": "Optimize with dynamic programming",
+          "option3": "Ignore edge cases",
+          "option4": "Ask for clarification",
+          "hp1": -10, "hp2": 10, "hp3": -5, "hp4": 5,
+          "atk1": 0, "atk2": 15, "atk3": -5, "atk4": 5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "Explain a complex technical concept.",
+          "option1": "Use simple language",
+          "option2": "Use technical jargon",
+          "option3": "Provide examples",
+          "option4": "Keep it brief",
+          "hp1": 5, "hp2": -10, "hp3": 10, "hp4": -5,
+          "atk1": 5, "atk2": -10, "atk3": 15, "atk4": -5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "Describe your experience with coding languages.",
+          "option1": "List all languages",
+          "option2": "Highlight key languages",
+          "option3": "Mention recent projects",
+          "option4": "Discuss learning new languages",
+          "hp1": 10, "hp2": -5, "hp3": 5, "hp4": -10,
+          "atk1": 10, "atk2": -5, "atk3": 5, "atk4": -10,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "What tools do you use for debugging?",
+          "option1": "Use a debugger tool",
+          "option2": "Print statements",
+          "option3": "Code reviews",
+          "option4": "Static analysis tools",
+          "hp1": 0, "hp2": 5, "hp3": -10, "hp4": 10,
+          "atk1": 0, "atk2": 5, "atk3": -10, "atk4": 10,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "How do you optimize code?",
+          "option1": "Identify bottlenecks",
+          "option2": "Optimize algorithms",
+          "option3": "Use efficient data structures",
+          "option4": "Parallelize tasks",
+          "hp1": 10, "hp2": 5, "hp3": -5, "hp4": -10,
+          "atk1": 10, "atk2": 5, "atk3": -5, "atk4": -10,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        }
+      ]
+    },
+    {
+      "name": "Behavioral Interview",
+      "description": "You are at the Engineering Manager stage",
+      "interviewer": {"name": "Engineering Manager", "hp": 30, "atk": 10, "def": 5},
+      "questions": [
+        {
+          "text": "Describe a challenge you faced.",
+          "option1": "I solved it on my own",
+          "option2": "I collaborated with the team",
+          "option3": "I escalated to my manager",
+          "option4": "I ignored the challenge",
+          "hp1": 5, "hp2": 10, "hp3": -5, "hp4": -10,
+          "atk1": 5, "atk2": 10, "atk3": -5, "atk4": -10,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "How do you handle tight deadlines?",
+          "option1": "I work overtime",
+          "option2": "I prioritize tasks",
+          "option3": "I ask for help",
+          "option4": "I ignore the deadlines",
+          "hp1": -5, "hp2": 10, "hp3": 5, "hp4": -10,
+          "atk1": 0, "atk2": 10, "atk3": 0, "atk4": 0,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "Tell me about a time you led a team.",
+          "option1": "Set clear goals",
+          "option2": "Motivate team members",
+          "option3": "Delegate tasks",
+          "option4": "Monitor progress closely",
+          "hp1": 10, "hp2": 5, "hp3": 10, "hp4": 5,
+          "atk1": 10, "atk2": 5, "atk3": 10, "atk4": 5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "How do you handle conflicts at work?",
+          "option1": "Address it directly",
+          "option2": "Involve HR",
+          "option3": "Avoid the person",
+          "option4": "Seek mediation",
+          "hp1": 10, "hp2": 0, "hp3": -5, "hp4": 5,
+          "atk1": 10, "atk2": 0, "atk3": -5, "atk4": 5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "What motivates you?",
+          "option1": "Achieving goals",
+          "option2": "Recognition",
+          "option3": "Money",
+          "option4": "Personal growth",
+          "hp1": 10, "hp2": 5, "hp3": 0, "hp4": 5,
+          "atk1": 10, "atk2": 5, "atk3": 0, "atk4": 5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        }
+      ]
+    },
+    {
+      "name": "System Design Interview",
+      "description": "You are at the System Architect stage",
+      "interviewer": {"name": "System Architect", "hp": 30, "atk": 10, "def": 5},
+      "questions": [
+        {
+          "text": "Design a scalable system.",
+          "option1": "Use microservices",
+          "option2": "Use a monolithic architecture",
+          "option3": "Use a serverless approach",
+          "option4": "Use a single server",
+          "hp1": 10, "hp2": -10, "hp3": 5, "hp4": -5,
+          "atk1": 10, "atk2": -10, "atk3": 5, "atk4": -5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "How would you design a database schema for a social network?",
+          "option1": "Use a relational database",
+          "option2": "Use a NoSQL database",
+          "option3": "Use a graph database",
+          "option4": "Use a key-value store",
+          "hp1": -5, "hp2": 10, "hp3": -10, "hp4": 5,
+          "atk1": -5, "atk2": 10, "atk3": -10, "atk4": 5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "How do you handle large amounts of data?",
+          "option1": "Data partitioning",
+          "option2": "Indexing",
+          "option3": "Caching",
+          "option4": "Data compression",
+          "hp1": 10, "hp2": 5, "hp3": -5, "hp4": -10,
+          "atk1": 10, "atk2": 5, "atk3": -5, "atk4": -10,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "Explain the principles of microservices.",
+          "option1": "Decoupling services",
+          "option2": "Using REST APIs",
+          "option3": "Implementing service discovery",
+          "option4": "Handling failures gracefully",
+          "hp1": 5, "hp2": 10, "hp3": -5, "hp4": -10,
+          "atk1": 5, "atk2": 10, "atk3": -5, "atk4": -10,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "How would you design a load balancer?",
+          "option1": "Round-robin load balancing",
+          "option2": "Least connections",
+          "option3": "IP hash",
+          "option4": "Weight-based load balancing",
+          "hp1": 10, "hp2": -5, "hp3": -10, "hp4": 5,
+          "atk1": 10, "atk2": -5, "atk3": -10, "atk4": 5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        }
+      ]
+    },
+    {
+      "name": "Second Behavioral Interview",
+      "description": "You are at the Behavioral Specialist stage",
+      "interviewer": {"name": "Behavioral Specialist", "hp": 30, "atk": 10, "def": 5},
+      "questions": [
+        {
+          "text": "Describe a challenge you faced.",
+          "option1": "I solved it on my own",
+          "option2": "I collaborated with the team",
+          "option3": "I escalated to my manager",
+          "option4": "I ignored the challenge",
+          "hp1": 5, "hp2": 10, "hp3": -5, "hp4": -10,
+          "atk1": 5, "atk2": 10, "atk3": -5, "atk4": -10,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "How do you handle tight deadlines?",
+          "option1": "I work overtime",
+          "option2": "I prioritize tasks",
+          "option3": "I ask for help",
+          "option4": "I ignore the deadlines",
+          "hp1": -5, "hp2": 10, "hp3": 5, "hp4": -10,
+          "atk1": 0, "atk2": 10, "atk3": 0, "atk4": 0,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "Tell me about a time you led a team.",
+          "option1": "Set clear goals",
+          "option2": "Motivate team members",
+          "option3": "Delegate tasks",
+          "option4": "Monitor progress closely",
+          "hp1": 10, "hp2": 5, "hp3": 10, "hp4": 5,
+          "atk1": 10, "atk2": 5, "atk3": 10, "atk4": 5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "How do you handle conflicts at work?",
+          "option1": "Address it directly",
+          "option2": "Involve HR",
+          "option3": "Avoid the person",
+          "option4": "Seek mediation",
+          "hp1": 10, "hp2": 0, "hp3": -5, "hp4": 5,
+          "atk1": 10, "atk2": 0, "atk3": -5, "atk4": 5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "What motivates you?",
+          "option1": "Achieving goals",
+          "option2": "Recognition",
+          "option3": "Money",
+          "option4": "Personal growth",
+          "hp1": 10, "hp2": 5, "hp3": 0, "hp4": 5,
+          "atk1": 10, "atk2": 5, "atk3": 0, "atk4": 5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        }
+      ]
+    },
+    {
+      "name": "Final Interview with CEO",
+      "description": "You are at the CEO stage",
+      "interviewer": {"name": "CEO", "hp": 30, "atk": 10, "def": 5},
+      "questions": [
+        {
+          "text": "Describe a challenge you faced.",
+          "option1": "I solved it on my own",
+          "option2": "I collaborated with the team",
+          "option3": "I escalated to my manager",
+          "option4": "I ignored the challenge",
+          "hp1": 5, "hp2": 10, "hp3": -5, "hp4": -10,
+          "atk1": 5, "atk2": 10, "atk3": -5, "atk4": -10,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "How do you handle tight deadlines?",
+          "option1": "I work overtime",
+          "option2": "I prioritize tasks",
+          "option3": "I ask for help",
+          "option4": "I ignore the deadlines",
+          "hp1": -5, "hp2": 10, "hp3": 5, "hp4": -10,
+          "atk1": 0, "atk2": 10, "atk3": 0, "atk4": 0,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "Tell me about a time you led a team.",
+          "option1": "Set clear goals",
+          "option2": "Motivate team members",
+          "option3": "Delegate tasks",
+          "option4": "Monitor progress closely",
+          "hp1": 10, "hp2": 5, "hp3": 10, "hp4": 5,
+          "atk1": 10, "atk2": 5, "atk3": 10, "atk4": 5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "How do you handle conflicts at work?",
+          "option1": "Address it directly",
+          "option2": "Involve HR",
+          "option3": "Avoid the person",
+          "option4": "Seek mediation",
+          "hp1": 10, "hp2": 0, "hp3": -5, "hp4": 5,
+          "atk1": 10, "atk2": 0, "atk3": -5, "atk4": 5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        },
+        {
+          "text": "What motivates you?",
+          "option1": "Achieving goals",
+          "option2": "Recognition",
+          "option3": "Money",
+          "option4": "Personal growth",
+          "hp1": 10, "hp2": 5, "hp3": 0, "hp4": 5,
+          "atk1": 10, "atk2": 5, "atk3": 0, "atk4": 5,
+          "def1": 0, "def2": 0, "def3": 0, "def4": 0
+        }
+      ]
+    }
+  ]
+}

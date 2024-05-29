@@ -1,72 +1,69 @@
 #include "game.h"
 #include "combat.h"
+#include "load_config.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-void initializeGame(Character *player, Scenario scenarios[]) {
-    // Initialize player character
+int adjacencyMatrix[MAX_SCENARIOS][MAX_SCENARIOS] = {
+    {0, 1, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0, 0},
+    {0, 0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 1, 0},
+    {0, 0, 0, 0, 0, 1},
+    {0, 0, 0, 0, 0, 0}
+};
+
+char *scenarioNames[MAX_SCENARIOS] = {
+    "HR Screening",
+    "Coding Assessment",
+    "Behavioral Interview",
+    "System Design Interview",
+    "Second Behavioral Interview",
+    "Final Interview with CEO"
+};
+
+void createCharacter(Character *player, Skill availableSkills[], int numSkills) {
     printf("Enter your character's name: ");
     scanf("%s", player->name);
     player->hp = 100;
     player->atk = 20;
     player->def = 10;
 
-    // Define skills (interview answers)
-    strcpy(player->skills[0].name, "Perfectionist");
-    strcpy(player->skills[0].description, "I am too much of a perfectionist");
-    player->skills[0].type = 1;
-    player->skills[0].atkModifier = -10;
+    printf("Choose 4 skills from the following list:\n");
+    for (int i = 0; i < numSkills; i++) {
+        printf("%d. %s - %s (Type: %s, ATK Modifier: %d, DEF Modifier: %d)\n", i + 1, availableSkills[i].name, availableSkills[i].description,
+               availableSkills[i].type == 1 ? "Offensive" : "Defensive", availableSkills[i].atkModifier, availableSkills[i].defModifier);
+    }
 
-    strcpy(player->skills[1].name, "Hard Worker");
-    strcpy(player->skills[1].description, "I work too hard");
-    player->skills[1].type = 1;
-    player->skills[1].atkModifier = 5;
+    int chosenSkills[MAX_SKILLS] = {0}; // To keep track of chosen skills
 
-    // Initialize scenarios (job interviews)
-    char* interviewerNames[] = {"Mr. Smith", "Ms. Johnson", "Dr. Brown", "Prof. Davis"};
-    char* questionTexts[] = {
-        "What is your greatest weakness?",
-        "Where do you see yourself in 5 years?",
-        "Why do you want to work here?",
-        "How do you handle stress?",
-        "Tell me about a time you failed."
-    };
-    char* options[][MAX_OPTIONS] = {
-        {"I am too much of a perfectionist", "I work too hard", "I can be disorganized at times", "I have trouble delegating tasks"},
-        {"In your position", "Running my own company", "Still learning and growing", "In a different field"},
-        {"For the money", "Because I love this industry", "For the experience", "I need a job"},
-        {"I don't get stressed", "I exercise regularly", "I meditate", "I ignore it"},
-        {"I don't fail", "I learned from my mistakes", "I don't remember any failures", "I try to avoid failure"}
-    };
-    int impacts[][MAX_OPTIONS] = {
-        {-10, -10, 10, 5},
-        {-5, -5, 10, -5},
-        {-10, 10, 5, -10},
-        {-10, 10, 10, -10},
-        {-10, 10, -5, -5}
-    };
+    for (int i = 0; i < MAX_SKILLS; i++) {
+        int choice;
+        int validChoice = 0;
 
-    for (int i = 0; i < 4; i++) {
-        snprintf(scenarios[i].name, MAX_NAME_LENGTH, "Interview %d", i+1);
-        snprintf(scenarios[i].description, 200, "You are at job interview %d", i+1);
-        snprintf(scenarios[i].interviewer.name, MAX_NAME_LENGTH, "%s", interviewerNames[i]);
-        scenarios[i].interviewer.hp = 30;
-        scenarios[i].interviewer.atk = 10;
-        scenarios[i].interviewer.def = 5;
-        scenarios[i].questionCount = MAX_QUESTIONS;
+        while (!validChoice) {
+            printf("Choose skill %d: ", i + 1);
+            scanf("%d", &choice);
+            choice--; // To match array index
 
-        for (int j = 0; j < MAX_QUESTIONS; j++) {
-            snprintf(scenarios[i].questions[j].text, 200, "%s", questionTexts[j]);
-            for (int k = 0; k < MAX_OPTIONS; k++) {
-                snprintf(scenarios[i].questions[j].options[k], 200, "%s", options[j][k]);
-                scenarios[i].questions[j].impacts[k] = impacts[j][k];
+            if (choice >= 0 && choice < numSkills && !chosenSkills[choice]) {
+                player->skills[i] = availableSkills[choice];
+                chosenSkills[choice] = 1; // Mark skill as chosen
+                validChoice = 1;
+            } else {
+                printf("Invalid choice or skill already chosen, try again.\n");
             }
         }
     }
 }
 
-int playScenario(Character *player, Scenario *scenario, int scenarioIndex) {
+
+void initializeGame(Character *player, Scenario scenarios[], Skill availableSkills[], int numSkills) {
+    createCharacter(player, availableSkills, numSkills);
+}
+
+int playScenario(Character *player, Scenario *scenario, int scenarioIndex, int completedScenarios[]) {
     printf("You are now in %s\n", scenario->name);
     printf("%s\n", scenario->description);
     printf("Interviewer: %s\n", scenario->interviewer.name);
@@ -82,10 +79,19 @@ int playScenario(Character *player, Scenario *scenario, int scenarioIndex) {
         choice--; // to match the array index
 
         if (choice >= 0 && choice < MAX_OPTIONS) {
-            player->hp += scenario->questions[i].impacts[choice];
-            printf("Your HP: %d\n", player->hp);
+            player->hp += scenario->questions[i].hpImpacts[choice];
+            player->atk += scenario->questions[i].atkImpacts[choice];
+            player->def += scenario->questions[i].defImpacts[choice];
+
+            // Prevent negative ATK
+            if (player->atk < 0) {
+                player->atk = 0;
+            }
+
+            printf("Your HP: %d, ATK: %d, DEF: %d\n", player->hp, player->atk, player->def);
         } else {
             printf("Invalid choice.\n");
+            i--; // Retry the current question
         }
 
         if (player->hp <= 0) {
@@ -95,8 +101,34 @@ int playScenario(Character *player, Scenario *scenario, int scenarioIndex) {
     }
 
     printf("You passed the interview!\n");
-    if (scenarioIndex + 1 < 4) {
-        printf("Proceeding to next interview...\n");
+
+    // Mark the current scenario as completed
+    completedScenarios[scenarioIndex] = 1;
+
+    // Show available scenarios
+    printf("Available scenarios to navigate to:\n");
+    int availableScenarioCount = 0;
+    for (int i = 0; i < MAX_SCENARIOS; i++) {
+        if (!completedScenarios[i]) {
+            printf("%d. %s\n", i, scenarioNames[i]);
+            availableScenarioCount++;
+        }
     }
-    return scenarioIndex + 1; // Proceed to the next scenario
+
+    if (availableScenarioCount == 0) {
+        return -1;
+    }
+
+    int nextScenario;
+    while (1) {
+        printf("Choose the next scenario to navigate to: ");
+        scanf("%d", &nextScenario);
+        if (nextScenario >= 0 && nextScenario < MAX_SCENARIOS && !completedScenarios[nextScenario]) {
+            break; // valid choice
+        } else {
+            printf("Invalid scenario. Please choose again.\n");
+        }
+    }
+
+    return nextScenario; // Proceed to the selected scenario
 }
